@@ -15,7 +15,9 @@ namespace WebAutomationFramework.Pages
         private IWebElement EmailTxtBox => _driver.FindElement(By.CssSelector("[name='emailRegisterPage']"));
         private IWebElement EmailErrorLabel => _driver.FindElement(By.CssSelector("[name='emailRegisterPage'] +label"));
         private IWebElement PasswordTxtBox => _driver.FindElement(By.CssSelector("[name='passwordRegisterPage']"));
+        private IWebElement PasswordErrorLabel => _driver.FindElement(By.CssSelector("[name='passwordRegisterPage'] +label"));
         private IWebElement ConfirmPasswordTxtBox => _driver.FindElement(By.CssSelector("[name='confirm_passwordRegisterPage']"));
+        private IWebElement ConfirmPasswordErrorLabel => _driver.FindElement(By.CssSelector("[name='confirm_passwordRegisterPage'] +label"));
 
         public void WaitForHeaderTextToBeDisplayed()
         {
@@ -35,6 +37,18 @@ namespace WebAutomationFramework.Pages
             EmailTxtBox.SendKeys(email);
         }
 
+        public void EnterPassword(string password)
+        {
+            PasswordTxtBox.Clear();
+            PasswordTxtBox.SendKeys(password);
+        }
+
+        public void EnterConfirmPassword(string confirmPassword)
+        {
+            ConfirmPasswordTxtBox.Clear();
+            ConfirmPasswordTxtBox.SendKeys(confirmPassword);
+        }
+
         public string GetUserNameErrorLabel()
         {
             UserNameTxtBox.Click();
@@ -47,6 +61,28 @@ namespace WebAutomationFramework.Pages
             EmailTxtBox.Click();
             EmailTxtBox.SendKeys(Keys.Tab);
             return EmailErrorLabel.Text;
+        }
+
+        public string GetPasswordErrorLabel()
+        {
+            if (_driver is OpenQA.Selenium.Firefox.FirefoxDriver)
+            {
+                Thread.Sleep(5000);
+            }
+            PasswordTxtBox.Click();
+            PasswordTxtBox.SendKeys(Keys.Tab);
+            return PasswordErrorLabel.Text;
+        }
+
+        public string GetConfirmPasswordErrorLabel()
+        {
+            if (_driver is OpenQA.Selenium.Firefox.FirefoxDriver)
+            {
+                Thread.Sleep(5000);
+            }
+            ConfirmPasswordTxtBox.Click();
+            ConfirmPasswordTxtBox.SendKeys(Keys.Tab);
+            return ConfirmPasswordErrorLabel.Text;
         }
     }
 }
