@@ -85,13 +85,15 @@ namespace WebAutomationFramework.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Check error messages for Username & Email when both are empty")]
+        [NUnit.Framework.DescriptionAttribute("Check error messages for Username, Email, Password & Confirm Password fields when" +
+            " all are empty")]
         [NUnit.Framework.Retry(3)]
-        public async System.Threading.Tasks.Task CheckErrorMessagesForUsernameEmailWhenBothAreEmpty()
+        public async System.Threading.Tasks.Task CheckErrorMessagesForUsernameEmailPasswordConfirmPasswordFieldsWhenAllAreEmpty()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Check error messages for Username & Email when both are empty", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Check error messages for Username, Email, Password & Confirm Password fields when" +
+                    " all are empty", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -115,24 +117,35 @@ this.ScenarioInitialize(scenarioInfo);
     await testRunner.AndAsync("I dont enter anything to username and email fields", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 9
-    await testRunner.ThenAsync("I see the \'Username field is require\' error message is displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+    await testRunner.AndAsync("I dont enter anything to password and confirm password fields", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 10
+    await testRunner.ThenAsync("I see the \'Username field is required\' error message is displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 11
     await testRunner.AndAsync("I see the \'Email field is required\' error message is displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 12
+    await testRunner.AndAsync("I see the \'Password field is required\' error message is displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 13
+    await testRunner.AndAsync("I see the \'Confirm password field is required\' error message is displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Check error message not displayed for Username & Email when they are filled")]
+        [NUnit.Framework.DescriptionAttribute("Check error message are not displayed for Username, Email, Password & Confirm Pas" +
+            "sword fields when they are filled")]
         [NUnit.Framework.Retry(3)]
-        public async System.Threading.Tasks.Task CheckErrorMessageNotDisplayedForUsernameEmailWhenTheyAreFilled()
+        public async System.Threading.Tasks.Task CheckErrorMessageAreNotDisplayedForUsernameEmailPasswordConfirmPasswordFieldsWhenTheyAreFilled()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Check error message not displayed for Username & Email when they are filled", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 12
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Check error message are not displayed for Username, Email, Password & Confirm Pas" +
+                    "sword fields when they are filled", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 15
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -142,26 +155,38 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 13
+#line 16
     await testRunner.GivenAsync("I navigate to the landing page of the app", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 14
+#line 17
  await testRunner.WhenAsync("I see the page is loaded", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 15
+#line 18
     await testRunner.AndAsync("I click the user button to create new user", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 19
     await testRunner.AndAsync("I enter \'admin\' to username field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 20
     await testRunner.AndAsync("I enter \'admin@gmail.com\' to email field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 18
+#line 21
+    await testRunner.AndAsync("I enter \'Admin123\' to password field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 22
+    await testRunner.AndAsync("I enter \'Admin123\' to confirm password field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 23
     await testRunner.ThenAsync("I dont see any error message for \'username\' field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 19
+#line 24
     await testRunner.AndAsync("I dont see any error message for \'email\' field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 25
+    await testRunner.AndAsync("I dont see any error message for \'password\' field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line hidden
+#line 26
+    await testRunner.AndAsync("I dont see any error message for \'confirm password\' field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
