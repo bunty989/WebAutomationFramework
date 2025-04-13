@@ -1,4 +1,5 @@
-﻿Feature: AdvantageDemo
+﻿@Retry
+Feature: AdvantageDemo
 
 Scenario: Check error messages for Username & Email when both are empty
 	Given I navigate to the landing page of the app
@@ -16,4 +17,3 @@ Scenario: Check error message not displayed for Username & Email when they are f
     And I enter 'admin@gmail.com' to email field
     Then I dont see any error message for 'username' field
     And I dont see any error message for 'email' field
-
