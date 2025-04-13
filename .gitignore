@@ -1,3 +1,4 @@
 /.vs/*
 /WebAutomationFramework/bin/*
 /WebAutomationFramework/obj/*
+/WebAutomationFramework/Logs/*

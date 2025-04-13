@@ -35,6 +35,10 @@ namespace WebAutomationFramework.Pages
 
         public void ClickUserBtn()
         {
+            if (_driver is OpenQA.Selenium.Firefox.FirefoxDriver)
+            {
+                Thread.Sleep(5000);
+            }
             UserBtn.Click();
         }
 
@@ -45,6 +49,10 @@ namespace WebAutomationFramework.Pages
             var executor = _driver as IJavaScriptExecutor;
             executor?.ExecuteScript("arguments[0].click();", CreateNewAccount);
             //CreateNewAccount.Click();
+            if (_driver is OpenQA.Selenium.Firefox.FirefoxDriver)
+            {
+                Thread.Sleep(5000);
+            }
         }
     }
 }
