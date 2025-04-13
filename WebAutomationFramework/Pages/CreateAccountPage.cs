@@ -1,0 +1,52 @@
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+
+namespace WebAutomationFramework.Pages
+{
+    internal class CreateAccountPage
+    {
+        private readonly IWebDriver _driver;
+
+        public CreateAccountPage(IWebDriver driver) => _driver = driver;
+
+        private IWebElement HeaderText => _driver.FindElement(By.CssSelector("#registerPage h3[class^='robo']"));
+        private IWebElement UserNameTxtBox => _driver.FindElement(By.CssSelector("[name='usernameRegisterPage']"));
+        private IWebElement UserNameErrorLabel => _driver.FindElement(By.CssSelector("[name='usernameRegisterPage'] +label"));
+        private IWebElement EmailTxtBox => _driver.FindElement(By.CssSelector("[name='emailRegisterPage']"));
+        private IWebElement EmailErrorLabel => _driver.FindElement(By.CssSelector("[name='emailRegisterPage'] +label"));
+        private IWebElement PasswordTxtBox => _driver.FindElement(By.CssSelector("[name='passwordRegisterPage']"));
+        private IWebElement ConfirmPasswordTxtBox => _driver.FindElement(By.CssSelector("[name='confirm_passwordRegisterPage']"));
+
+        public void WaitForHeaderTextToBeDisplayed()
+        {
+            var wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+            wait.Until(driver => HeaderText.Displayed);
+        }
+
+        public void EnterUserName(string userName)
+        {
+            UserNameTxtBox.Clear();
+            UserNameTxtBox.SendKeys(userName);
+        }
+
+        public void EnterEmail(string email)
+        {
+            EmailTxtBox.Clear();
+            EmailTxtBox.SendKeys(email);
+        }
+
+        public string GetUserNameErrorLabel()
+        {
+            UserNameTxtBox.Click();
+            UserNameTxtBox.SendKeys(Keys.Tab);
+            return UserNameErrorLabel.Text;
+        }
+
+        public string GetEmailErrorLabel()
+        {
+            EmailTxtBox.Click();
+            EmailTxtBox.SendKeys(Keys.Tab);
+            return EmailErrorLabel.Text;
+        }
+    }
+}
