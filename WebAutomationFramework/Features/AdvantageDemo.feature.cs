@@ -22,12 +22,14 @@ namespace WebAutomationFramework.Features
     [NUnit.Framework.TestFixtureAttribute()]
     [NUnit.Framework.DescriptionAttribute("AdvantageDemo")]
     [NUnit.Framework.FixtureLifeCycleAttribute(NUnit.Framework.LifeCycle.InstancePerTestCase)]
+    [NUnit.Framework.CategoryAttribute("Retry")]
     public partial class AdvantageDemoFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "Retry"};
         
         private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "AdvantageDemo", null, global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
@@ -84,12 +86,13 @@ namespace WebAutomationFramework.Features
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check error messages for Username & Email when both are empty")]
+        [NUnit.Framework.Retry(3)]
         public async System.Threading.Tasks.Task CheckErrorMessagesForUsernameEmailWhenBothAreEmpty()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Check error messages for Username & Email when both are empty", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 3
+#line 4
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -99,22 +102,22 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 4
+#line 5
  await testRunner.GivenAsync("I navigate to the landing page of the app", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 5
+#line 6
  await testRunner.WhenAsync("I see the page is loaded", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 6
+#line 7
     await testRunner.AndAsync("I click the user button to create new user", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 7
+#line 8
     await testRunner.AndAsync("I dont enter anything to username and email fields", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 8
-    await testRunner.ThenAsync("I see the \'Username field is required\' error message is displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
 #line 9
+    await testRunner.ThenAsync("I see the \'Username field is require\' error message is displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
+#line 10
     await testRunner.AndAsync("I see the \'Email field is required\' error message is displayed", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -123,12 +126,13 @@ this.ScenarioInitialize(scenarioInfo);
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Check error message not displayed for Username & Email when they are filled")]
+        [NUnit.Framework.Retry(3)]
         public async System.Threading.Tasks.Task CheckErrorMessageNotDisplayedForUsernameEmailWhenTheyAreFilled()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Check error message not displayed for Username & Email when they are filled", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 11
+#line 12
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -138,25 +142,25 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 12
+#line 13
     await testRunner.GivenAsync("I navigate to the landing page of the app", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 13
+#line 14
  await testRunner.WhenAsync("I see the page is loaded", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 14
+#line 15
     await testRunner.AndAsync("I click the user button to create new user", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 15
+#line 16
     await testRunner.AndAsync("I enter \'admin\' to username field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 16
+#line 17
     await testRunner.AndAsync("I enter \'admin@gmail.com\' to email field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 17
+#line 18
     await testRunner.ThenAsync("I dont see any error message for \'username\' field", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 18
+#line 19
     await testRunner.AndAsync("I dont see any error message for \'email\' field", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
