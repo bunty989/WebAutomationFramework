@@ -24,7 +24,7 @@ namespace WebAutomationFramework.Utilities
         {
             public static string? GetBaseDirectory = Directory.GetParent(@"../../../")?.FullName;
             public static string ReportPath = Path.Combine(GetBaseDirectory ?? throw new DirectoryNotFoundException());
-            public static string HtmlReportFolder = "\\Logs";
+            public static string HtmlReportFolder = "Logs";
             public const string ConfigFileName = "appsettings.json";
             public const string LogName = @"\Log";
             public const string ExtentConfigName = "ExtentConfig.xml";
@@ -39,10 +39,13 @@ namespace WebAutomationFramework.Utilities
         {
             Chrome,
             Firefox,
+            FirefoxHeadless,
             InternetExplorer,
             Edge,
+            EdgeHeadless,
             ChromeHeadless,
-            ChromeIncognito
+            ChromeIncognito,
+            Safari
         }
     }
 }

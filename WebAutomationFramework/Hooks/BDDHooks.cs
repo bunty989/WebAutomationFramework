@@ -31,6 +31,8 @@ namespace WebAutomationFramework.Hooks
         private static ExtentReports? _extent;
         private static string BrowserType => ConfigHelper.ReadConfigValue
             (TestConstant.ConfigTypes.WebDriverConfig, TestConstant.ConfigTypesKey.Browser);
+        private static string? BrowserVersion => BrowserVersionHelper.GetBrowserVersion(
+            Enum.Parse<TestConstant.BrowserType>(BrowserType, true));
 
         [BeforeScenario]
         public void BeforeScenario(ScenarioContext context)
@@ -58,7 +60,7 @@ namespace WebAutomationFramework.Hooks
         {
             var formattedDateTime = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss");
             var reportFilePath =
-                TestConstant.PathVariables.GetBaseDirectory + TestConstant.PathVariables.HtmlReportFolder
+                TestConstant.PathVariables.GetBaseDirectory + Path.DirectorySeparatorChar + TestConstant.PathVariables.HtmlReportFolder
                                                             + Path.DirectorySeparatorChar + formattedDateTime;
             CommonMethods.CreateFolder(reportFilePath);
             var levelSwitch = new LoggingLevelSwitch(GetLogLevel());
@@ -67,7 +69,7 @@ namespace WebAutomationFramework.Hooks
                 .WriteTo.File(reportFilePath + TestConstant.PathVariables.LogName,
                     outputTemplate: "{Timestamp: yyyy-MM-dd HH:mm:ss.fff} | {Level:u3} | {Message} | {NewLine}",
                     rollingInterval: RollingInterval.Day).CreateLogger();
-            var htmlReport = new ExtentSparkReporter(reportFilePath + "\\ExtentFramework.html");
+            var htmlReport = new ExtentSparkReporter(reportFilePath + Path.DirectorySeparatorChar + "ExtentFramework.html");
             //htmlReport.LoadXMLConfig(TestConstant.PathVariables.ReportPath + Path.DirectorySeparatorChar
             //+ TestConstant.PathVariables.ExtentConfigName);
 
@@ -84,6 +86,7 @@ namespace WebAutomationFramework.Hooks
                 { "Domain", Environment.UserDomainName },
                 { "Username", Environment.UserName },
                 {"Browser Name", BrowserType},
+                {"Browser Version", BrowserVersion }
             };
             foreach (var (key, value) in sysInfo) { _extent.AddSystemInfo(key, value); }
             _extent.AttachReporter(htmlReport);
