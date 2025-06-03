@@ -18,6 +18,7 @@ namespace WebAutomationFramework.Pages
         private IWebElement PasswordErrorLabel => _driver.FindElement(By.CssSelector("[name='passwordRegisterPage'] +label"));
         private IWebElement ConfirmPasswordTxtBox => _driver.FindElement(By.CssSelector("[name='confirm_passwordRegisterPage']"));
         private IWebElement ConfirmPasswordErrorLabel => _driver.FindElement(By.CssSelector("[name='confirm_passwordRegisterPage'] +label"));
+        private IJavaScriptExecutor jsDriver => (IJavaScriptExecutor)_driver;
 
         public void WaitForHeaderTextToBeDisplayed()
         {
@@ -51,7 +52,15 @@ namespace WebAutomationFramework.Pages
 
         public string GetUserNameErrorLabel()
         {
-            UserNameTxtBox.Click();
+            try
+            {
+                UserNameTxtBox.Click();
+            }
+            catch (Exception)
+            {
+                jsDriver.ExecuteScript("window.scrollBy(0,-250)");
+                UserNameTxtBox.Click();
+            }
             UserNameTxtBox.SendKeys(Keys.Tab);
             return UserNameErrorLabel.Text;
         }
@@ -69,7 +78,15 @@ namespace WebAutomationFramework.Pages
             {
                 Thread.Sleep(5000);
             }
-            PasswordTxtBox.Click();
+            try
+            {
+                PasswordTxtBox.Click();
+            }
+            catch (Exception)
+            {
+                jsDriver.ExecuteScript("window.scrollBy(0,-250)");
+                PasswordTxtBox.Click();
+            }
             PasswordTxtBox.SendKeys(Keys.Tab);
             return PasswordErrorLabel.Text;
         }
