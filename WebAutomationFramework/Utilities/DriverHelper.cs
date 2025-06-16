@@ -95,6 +95,7 @@ namespace WebAutomationFramework.Utilities
                     break;
             }
             Driver.Manage().Window.Maximize();
+            Driver.Manage().Window.Size = new System.Drawing.Size(1280, 800);
             Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(int.Parse(ConfigHelper.ReadConfigValue
                     (TestConstant.ConfigTypes.WebDriverConfig, TestConstant.ConfigTypesKey.ImplicitWaitTimeout)));
             Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(int.Parse(ConfigHelper.ReadConfigValue
