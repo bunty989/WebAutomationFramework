@@ -20,8 +20,8 @@ jobs:
             browser: safari
           - os: windows-2025
             browser: safari
-          # - os: ubuntu-latest
-          #   browser: edgeheadless
+          - os: macos-latest
+            browser: Edgeheadless
     steps:
       - uses: actions/checkout@v4
 
