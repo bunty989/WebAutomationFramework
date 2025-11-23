@@ -23,7 +23,7 @@ jobs:
           - os: macos-latest
             browser: Edgeheadless
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
