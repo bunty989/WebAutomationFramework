@@ -75,7 +75,7 @@ namespace WebAutomationFramework.Utilities
                     };
                     if (browserType == Browser.EdgeHeadless)
                     {
-                        edgeOptions.AddArguments("window-size=1280,800", "--headless=new");
+                        edgeOptions.AddArguments("--disable-dev-shm-usage", "--headless=new", "--no-sandbox");
                     }
                     Driver = new EdgeDriver(edgeOptions);
                     break;
